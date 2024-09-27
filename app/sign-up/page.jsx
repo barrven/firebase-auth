@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/app/firebase/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   //calling this hook will return an array in which the first value
   //is a createUserWithEmailAndPassword function that allows us to create a user. 
@@ -20,6 +22,7 @@ const SignUp = () => {
         // sessionStorage.setItem('user', true);
         setEmail('');
         setPassword('');
+        router.push('/');
     } catch(e){
         console.error(e);
     }
@@ -70,6 +73,15 @@ const SignUp = () => {
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Sign Up
+            </button>
+          </div>
+
+          <div className='flex justify-center'>
+            <button
+              className="text-white py-2 px-4 rounded-md hover:text-blue-500"
+              onClick={()=>{ router.push('/sign-in'); }}
+            >
+              Go to sign in
             </button>
           </div>
         </form>

@@ -4,6 +4,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/app/firebase/config';
 import { useRouter } from 'next/navigation';
 
+
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -62,13 +63,21 @@ const SignIn = () => {
             />
           </div>
 
-          {/* Submit button */}
           <div>
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Sign In
+            </button>
+          </div>
+
+          <div className='flex justify-center'>
+            <button
+              className="text-white py-2 px-4 rounded-md hover:text-blue-500"
+              onClick={()=>{ router.push('/sign-up'); }}
+            >
+              Go to sign up
             </button>
           </div>
         </form>
